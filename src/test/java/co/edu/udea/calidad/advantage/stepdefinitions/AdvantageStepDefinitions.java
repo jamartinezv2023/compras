@@ -1,6 +1,8 @@
 package co.edu.udea.calidad.advantage.stepdefinitions;
 
 import co.edu.udea.calidad.advantage.questions.PageText;
+import co.edu.udea.calidad.advantage.questions.PaymentConfirmationText;
+import co.edu.udea.calidad.advantage.questions.ShoppingCartText;
 import co.edu.udea.calidad.advantage.questions.SearchResultsText;
 import co.edu.udea.calidad.advantage.tasks.*;
 import co.edu.udea.calidad.advantage.utils.TestData;
@@ -76,7 +78,7 @@ public class AdvantageStepDefinitions {
     @Then("the customer should see the successful payment confirmation")
     public void deberiaVisualizarLaOrdenPagadaExitosamente() {
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), anyOf(
+                seeThat(PaymentConfirmationText.visible(), anyOf(
                         containsString("Thank you"),
                         containsString("ORDER"),
                         containsString("Tracking number")
@@ -98,7 +100,7 @@ public class AdvantageStepDefinitions {
     @Then("the cart should display added products")
     public void elCarritoDeberiaMostrarProductosAgregados() {
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), anyOf(
+                seeThat(ShoppingCartText.visible(), anyOf(
                         containsString("SHOPPING CART"),
                         containsString("CHECKOUT"),
                         containsString("TOTAL")

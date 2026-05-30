@@ -69,3 +69,21 @@ src/test/java/co/edu/udea/calidad/advantage
 
 src/test/resources/features/advantage
 └── advantage_purchase_e2e.feature
+
+## Modular Feature Structure
+
+The project was improved by separating the original feature into business modules:
+
+```text
+src/test/resources/features/advantage
+├── checkout
+│   └── checkout_e2e.feature
+├── login
+│   └── login_exception.feature
+├── cart
+│   └── cart_coverage.feature
+└── search
+    └── search_data_driven.feature
+
+
+
