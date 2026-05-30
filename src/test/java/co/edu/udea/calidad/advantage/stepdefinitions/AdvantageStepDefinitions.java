@@ -1,6 +1,7 @@
 package co.edu.udea.calidad.advantage.stepdefinitions;
 
 import co.edu.udea.calidad.advantage.questions.PageText;
+import co.edu.udea.calidad.advantage.questions.SearchResultsText;
 import co.edu.udea.calidad.advantage.tasks.*;
 import co.edu.udea.calidad.advantage.utils.TestData;
 import io.cucumber.java.Before;
@@ -114,7 +115,7 @@ public class AdvantageStepDefinitions {
 
         OnStage.theActorInTheSpotlight().should(
                 seeThat(
-                        PageText.visible(),
+                        SearchResultsText.visible(),
                         containsString(product)
                 )
         );
