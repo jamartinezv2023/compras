@@ -1,67 +1,71 @@
-# Taller de automatización - Screenplay BDD
+# Advantage Online Shopping - Screenplay BDD Automation
 
-Proyecto reestructurado para cumplir las observaciones del profesor Robinson Coronado:
+## Autor
 
-- Actor principal definido: **Cliente comprador**.
-- Escenarios en Gherkin con ruta feliz, caminos excepcionales, cobertura y estado del ambiente.
-- `Task`: acciones de negocio.
-- `Interaction`: detalle operativo o “la menuda” (`ClickOn`, `EnterValue`, `ScrollTo`, `SelectOption`, `Pause`).
-- `Question`: validaciones limpias sin asserts complejos dentro de StepDefinitions.
-- Datos de prueba centralizados en `utils/Constants.java` y `utils/TestData.java`.
-- Generación de reporte Serenity BDD en `target/site/serenity/index.html`.
-- Delay observable entre pasos mediante `Pause`, como exige la rúbrica.
+Jose Alfredo Martinez Valdes
 
-## Comando de ejecución
+## Sitio automatizado
 
-```bash
-gradle clean test aggregate --info
-```
+https://advantageonlineshopping.com/
 
-O, si se usa wrapper:
+## Objetivo del proyecto
 
-```bash
-./gradlew clean test aggregate --info
-```
+Automatizar un flujo E2E completo sobre Advantage Online Shopping usando Screenplay Pattern, Serenity BDD, Cucumber, Selenium WebDriver, Java y Gradle.
 
-En Windows Git Bash:
+El flujo principal valida que un cliente pueda:
 
-```bash
-chmod +x gradlew
-./gradlew clean test aggregate --info
-```
+1. Abrir la tienda online.
+2. Registrar una cuenta nueva.
+3. Seleccionar un producto disponible.
+4. Agregar el producto al carrito con una cantidad definida.
+5. Realizar el checkout.
+6. Pagar mediante SafePay.
+7. Validar la confirmación exitosa de la compra.
 
-## Reporte
+## Escenarios automatizados
 
-Después de ejecutar, abrir:
+| Tipo | Escenario |
+|---|---|
+| E2E / Happy Path | Register user, select product and complete payment with SafePay |
+| Exception | Invalid login is rejected |
+| Coverage | Add product to cart and validate quantity |
+| Data Driven | Search products by name using Scenario Outline |
+
+## Tags implementados
+
+- @e2e
+- @happy_path
+- @registration
+- @checkout
+- @exception
+- @login
+- @coverage
+- @cart
+- @search
+- @data_driven
+- @smoke
+- @regression
+
+## Tecnologías
+
+- Java
+- Gradle
+- Serenity BDD
+- Cucumber
+- Selenium WebDriver
+- Screenplay Pattern
+- ChromeDriver
+
+## Arquitectura Screenplay
 
 ```text
-target/site/serenity/index.html
-```
-
-## Escenarios implementados
-
-1. Compra E2E exitosa de dos productos disponibles.
-2. Login inválido.
-3. Checkout sin información obligatoria.
-4. Retiro de producto del carrito.
-5. Ordenamiento por precio de menor a mayor.
-6. Validación de acceso al inventario después del login.
-
-## Estructura clave
-
-```text
-src/main/java/co/edu/udea/calidad/automatizacion
+src/test/java/co/edu/udea/calidad/advantage
 ├── interactions
-├── models
 ├── questions
+├── runners
+├── stepdefinitions
 ├── tasks
-├── userinterfaces
 └── utils
 
-src/test/java/co/edu/udea/calidad/automatizacion
-├── runners
-└── stepdefinitions
-
-src/test/resources/features/saucedemo
-└── compra_e2e.feature
-```
+src/test/resources/features/advantage
+└── advantage_purchase_e2e.feature

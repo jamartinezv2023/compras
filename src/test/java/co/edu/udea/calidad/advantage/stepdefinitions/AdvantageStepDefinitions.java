@@ -63,7 +63,13 @@ public class AdvantageStepDefinitions {
 
     @When("the customer searches for product {string}")
     public void elClienteBuscaElProducto(String product) {
-        OnStage.theActorInTheSpotlight().attemptsTo(SearchProduct.named(product));
+
+        co.edu.udea.calidad.advantage.models.SearchContext
+                .setProduct(product);
+
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                SearchProduct.named(product)
+        );
     }
 
     @Then("the customer should see the successful payment confirmation")
@@ -101,8 +107,16 @@ public class AdvantageStepDefinitions {
 
     @Then("the customer should see search results")
     public void deberiaVisualizarResultadosAsociadosALaBusqueda() {
+
+        String product =
+                co.edu.udea.calidad.advantage.models.SearchContext
+                        .getProduct();
+
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), containsString("HP"))
+                seeThat(
+                        PageText.visible(),
+                        containsString(product)
+                )
         );
     }
 }
