@@ -48,8 +48,6 @@ dependencies {
 test {
     systemProperty 'file.encoding', 'UTF-8'
     systemProperty 'serenity.outputDirectory', 'target/site/serenity'
-    systemProperty 'serenity.requirements.dir', 'src/test/resources/features'
-    systemProperty 'serenity.test.root', 'features'
     testLogging.showStandardStreams = true
 }
 

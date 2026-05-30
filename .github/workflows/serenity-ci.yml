@@ -26,13 +26,29 @@ jobs:
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
 
+      - name: Check Chrome version
+        run: google-chrome --version
+
+      - name: Install XVFB
+        run: sudo apt-get update && sudo apt-get install -y xvfb
+
       - name: Grant Gradle permissions
         run: chmod +x ./gradlew
 
       - name: Execute Serenity tests
-        run: ./gradlew clean test aggregate --info
+        run: |
+          xvfb-run -a ./gradlew clean test aggregate --info \
+            -Dchrome.switches="--headless=new;--no-sandbox;--disable-dev-shm-usage;--disable-gpu;--window-size=1920,1080;--remote-allow-origins=*;--disable-notifications;--disable-popup-blocking"
         env:
+          CI: true
           CHROME_BIN: google-chrome
+
+      - name: Upload Gradle Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-test-report
+          path: build/reports/tests/test
 
       - name: Upload Serenity Report
         if: always()
