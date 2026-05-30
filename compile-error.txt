@@ -1,0 +1,32 @@
+> Task :compileJava NO-SOURCE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+
+> Task :compileTestJava FAILED
+C:\sistematiza\taller-automatizacion-screenplay-reestructurado\src\test\java\co\edu\udea\calidad\advantage\interactions\WaitLoaderDisappear.java:11: error: cannot find symbol
+import static org.hamcrest.Matchers.visible;
+^
+  symbol:   static visible
+  location: class Matchers
+C:\sistematiza\taller-automatizacion-screenplay-reestructurado\src\test\java\co\edu\udea\calidad\advantage\interactions\WaitLoaderDisappear.java:28: error: cannot find symbol
+                the(LOADER, not(visible()))
+                                ^
+  symbol:   method visible()
+  location: class WaitLoaderDisappear
+2 errors
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 3s
+1 actionable task: 1 executed

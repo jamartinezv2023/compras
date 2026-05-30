@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:3.3.4")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+}
+
+apply plugin: 'net.serenity-bdd.serenity-gradle-plugin'
+
+group = 'co.edu.udea.calidad'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+ext {
+    serenityVersion = '3.3.4'
+    junitVersion = '4.13.2'
+}
+
+dependencies {
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    testImplementation "org.hamcrest:hamcrest-all:1.3"
+    testImplementation "io.github.bonigarcia:webdrivermanager:5.4.1"
+}
+
+test {
+    systemProperty 'file.encoding', 'UTF-8'
+    systemProperty 'serenity.outputDirectory', 'target/site/serenity'
+    systemProperty 'serenity.requirements.dir', 'src/test/resources/features'
+    systemProperty 'serenity.test.root', 'features'
+    testLogging.showStandardStreams = true
+}
+
+gradle.startParameter.continueOnFailure = true
