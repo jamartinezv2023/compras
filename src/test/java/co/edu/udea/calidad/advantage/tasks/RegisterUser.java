@@ -1,11 +1,9 @@
 package co.edu.udea.calidad.advantage.tasks;
 
 import co.edu.udea.calidad.advantage.interactions.BrowserAction;
+import co.edu.udea.calidad.advantage.interactions.ClickRegisterJs;
 import co.edu.udea.calidad.advantage.interactions.Delay;
 import co.edu.udea.calidad.advantage.interactions.SetRegisterCountry;
-import co.edu.udea.calidad.advantage.interactions.DebugRegisterForm;
-import co.edu.udea.calidad.advantage.interactions.DebugInvalidFields;
-import co.edu.udea.calidad.advantage.interactions.ClickRegisterJs;
 import co.edu.udea.calidad.advantage.utils.TestData;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
@@ -43,16 +41,10 @@ public class RegisterUser implements Task {
                 BrowserAction.type("input[name='state_/_province_/_regionRegisterPage'] | input[id='state_/_province_/_regionRegisterPage'] | //input[contains(@name,'state') or contains(@id,'state')]", "Valle"),
                 BrowserAction.type("input[name='postal_codeRegisterPage'] | #postal_codeRegisterPage", "760001"),
                 BrowserAction.click("input[name='i_agree'] | input[type='checkbox']"),
-                DebugRegisterForm.now(),
-                DebugInvalidFields.now(),
                 ClickRegisterJs.now(),
-                Delay.observable(),
-                DebugRegisterForm.now()
+                Delay.observable()
         );
 
         actor.remember("advantageUser", username);
-
-        System.out.println("AFTER REGISTER URL => " + BrowseTheWeb.as(actor).getDriver().getCurrentUrl());
-        System.out.println("AFTER REGISTER PAGE CONTAINS USER => " + BrowseTheWeb.as(actor).getDriver().getPageSource().contains(username));
     }
 }
