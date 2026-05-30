@@ -1,6 +1,9 @@
 package co.edu.udea.calidad.advantage.stepdefinitions;
 
 import co.edu.udea.calidad.advantage.questions.PageText;
+import co.edu.udea.calidad.advantage.questions.PaymentConfirmationText;
+import co.edu.udea.calidad.advantage.questions.ShoppingCartText;
+import co.edu.udea.calidad.advantage.questions.SearchResultsText;
 import co.edu.udea.calidad.advantage.tasks.*;
 import co.edu.udea.calidad.advantage.utils.TestData;
 import io.cucumber.java.Before;
@@ -63,13 +66,19 @@ public class AdvantageStepDefinitions {
 
     @When("the customer searches for product {string}")
     public void elClienteBuscaElProducto(String product) {
-        OnStage.theActorInTheSpotlight().attemptsTo(SearchProduct.named(product));
+
+        co.edu.udea.calidad.advantage.models.SearchContext
+                .setProduct(product);
+
+        OnStage.theActorInTheSpotlight().attemptsTo(
+                SearchProduct.named(product)
+        );
     }
 
     @Then("the customer should see the successful payment confirmation")
     public void deberiaVisualizarLaOrdenPagadaExitosamente() {
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), anyOf(
+                seeThat(PaymentConfirmationText.visible(), anyOf(
                         containsString("Thank you"),
                         containsString("ORDER"),
                         containsString("Tracking number")
@@ -91,7 +100,7 @@ public class AdvantageStepDefinitions {
     @Then("the cart should display added products")
     public void elCarritoDeberiaMostrarProductosAgregados() {
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), anyOf(
+                seeThat(ShoppingCartText.visible(), anyOf(
                         containsString("SHOPPING CART"),
                         containsString("CHECKOUT"),
                         containsString("TOTAL")
@@ -101,8 +110,16 @@ public class AdvantageStepDefinitions {
 
     @Then("the customer should see search results")
     public void deberiaVisualizarResultadosAsociadosALaBusqueda() {
+
+        String product =
+                co.edu.udea.calidad.advantage.models.SearchContext
+                        .getProduct();
+
         OnStage.theActorInTheSpotlight().should(
-                seeThat(PageText.visible(), containsString("HP"))
+                seeThat(
+                        SearchResultsText.visible(),
+                        containsString(product)
+                )
         );
     }
 }
