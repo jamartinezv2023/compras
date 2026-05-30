@@ -87,3 +87,10 @@ src/test/resources/features/advantage
 
 
 
+
+## Serenity Requirements Configuration
+
+The project is configured to read requirements from:
+
+```text
+src/test/resources/features
