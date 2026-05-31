@@ -94,3 +94,4 @@ The project is configured to read requirements from:
 
 ```text
 src/test/resources/features
+# sonar trigger

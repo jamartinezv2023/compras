@@ -35,6 +35,5 @@ public class ClickRegisterJs implements Interaction {
                 "}"
         );
 
-        System.out.println("REGISTER BUTTON CLICKED WITH ANGULAR EVENTS");
     }
 }
